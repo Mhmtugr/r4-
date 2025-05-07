@@ -229,6 +229,11 @@ export const aiService = {
   }
 };
 
-// Global olarak erişilebilir hale getir (main.js içinde zaten yapılıyor ama burada da olabilir)
-// Vue.prototype.$aiService = aiService; // Vue 2 için
-// app.config.globalProperties.$aiService = aiService; // Vue 3 için (main.js'de yapılmalı)
+// Composable function to use aiService
+export function useAiService() {
+  return {
+    sendMessage: aiService.sendMessage,
+    ask: aiService.ask,
+    getServiceStatus: aiService.getServiceStatus,
+  };
+}
